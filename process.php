@@ -10,15 +10,13 @@ $csvFilePath = 'rpjurnal_convert.xls';
 
 if(isset($_FILES['fileUpload'])) {
 
-  if(empty($_FILES[''])){
+  if(empty($_FILES['fileUpload'])){
     echo '<script>';
     echo 'alert("File tidak ditemukan");';
     echo 'window.history.back();'; // Mengarahkan ke halaman sebelumnya
     echo '</script>';
     return false;
   }
-
-  return false;
 
   $file = $_FILES['fileUpload'];
   // Tentukan direktori penyimpanan file
