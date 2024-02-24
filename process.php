@@ -10,9 +10,9 @@ $csvFilePath = 'rpjurnal_convert.xls';
 
 if(isset($_FILES['fileUpload'])) {
 
-  if(empty($_FILES['fileUpload'])){
+  if(empty($_FILES['fileUpload']['name'])){
     echo '<script>';
-    echo 'alert("File tidak ditemukan");';
+    echo 'alert("File tidak ada");';
     echo 'window.history.back();'; // Mengarahkan ke halaman sebelumnya
     echo '</script>';
     return false;
@@ -40,8 +40,9 @@ if(isset($_FILES['fileUpload'])) {
     if(move_uploaded_file($file['tmp_name'], $uploadDirectory . $newFileName)) {
         
     } else {
+        $errorMessage = error_get_last()['message']; // Mengambil pesan error terakhir
         echo '<script>';
-        echo 'alert("Gagal mengunggah file.");';
+        echo 'alert("Gagal mengunggah file: ' . $errorMessage . '");';
         echo 'window.history.back();'; // Mengarahkan ke halaman sebelumnya
         echo '</script>';
         return false;
